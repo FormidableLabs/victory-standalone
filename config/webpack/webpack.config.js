@@ -1,10 +1,10 @@
 "use strict";
 
-const path = require('path');
-const webpack = require('webpack');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+var path = require('path');
+var webpack = require('webpack');
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
-const paths = {
+var paths = {
   source: path.resolve('src'),
   output: path.resolve('dist'),
 }

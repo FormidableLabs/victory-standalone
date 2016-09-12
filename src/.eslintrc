@@ -1,0 +1,6 @@
+{
+  "extends": "../config/eslint/.eslintrc-source",
+  "rules": {
+    "react/react-in-jsx-scope": 0
+  }
+}

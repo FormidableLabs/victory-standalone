@@ -1,0 +1,14 @@
+---
+  extends:
+    - "defaults/configurations/walmart/es6-react"
+    - ".eslintrc-base"
+
+  env:
+    browser: true
+
+  rules:
+    new-cap: 0                           # Allow wrapping exported component in `Radium()`
+    react/jsx-closing-bracket-location:
+      - 2
+      - nonEmpty: false
+      - selfClosing: tag-aligned
