@@ -1,0 +1,9 @@
+{
+  "presets": ["es2015"],
+  "plugins": [
+    "lodash",
+    "syntax-jsx",
+    ["transform-react-jsx", {"pragma": "h"}],
+    "transform-react-display-name",
+  ]
+}
