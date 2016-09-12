@@ -7,7 +7,18 @@ var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 var paths = {
   source: path.resolve('src'),
   output: path.resolve('dist'),
+  pkg: path.resolve('package.json')
 }
+
+var packageJson = require(paths.pkg);
+var libPath = (packageJson.name || "")
+var libName = libPath
+  .replace(/^\s+|\s+$/g, "")
+  .replace(/(^|[-_ ])+(.)/g, function (match, first, second) {
+    // Second match group is the character we want to change. Throw away first.
+    return second.toUpperCase();
+  });
+
 
 module.exports = {
   cache:    true,
@@ -16,7 +27,8 @@ module.exports = {
 
   output: {
     path:     paths.output,
-    filename: "[name].min.js",
+    filename: libPath + ".min.js",
+    library:  libName,
     libraryTarget: "umd"
   },
 
