@@ -1,9 +1,8 @@
-import { h, render } from "preact";
+import { h, render } from 'preact';
+import VictoryComposite from 'victory-composite';
 
-import VictoryLineChart from "./components/victory-line-chart.jsx";
-
-export default class VictoryStandalone {
+export default class Victory {
   constructor(dom, props) {
-    render(<VictoryLineChart {...props} />, dom);
+    render(<VictoryComposite {...props} />, dom);
   }
 }
