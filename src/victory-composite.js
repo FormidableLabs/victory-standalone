@@ -1,12 +1,10 @@
 import * as V from 'victory';
 import { h, Component } from 'preact';
-import { PropTypes } from 'preact-compat';
+
+// TODO: Expose API similar to Highcharts, add functionality other than
+//       VictoryLine :P
 
 class VictoryComposite extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render(props) {
     return (
       <V.VictoryChart>
@@ -17,7 +15,6 @@ class VictoryComposite extends Component {
 }
 
 VictoryComposite.propTypes = {
-  foo: PropTypes.string.isRequired
 }
 
 export default VictoryComposite;
