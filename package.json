@@ -39,7 +39,7 @@
     "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
     "victory-composed": "https://github.com/FormidableLabs/victory-composed.git",
-    "webpack": "^1.13.2"
+    "webpack": "^2.1.0-beta.25"
   },
   "dependencies": {}
 }
