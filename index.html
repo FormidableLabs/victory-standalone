@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Standalone Demo</title>
+  <style type="text/css" media="screen">
+    #root {
+      margin: auto;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="dist/victory-standalone.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    function random(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function generateData() {
+      const seriesCount = random(2,5);
+      const pointCount = random(3,6);
+
+      let series = [];
+
+      for(let a = 0; a < seriesCount; a++) {
+        let data = [];
+        for(let b = 0; b < pointCount; b++) {
+          data = data.concat({ x: b + 5, y: random(1, 10)})
+        }
+        series = series.concat({ data: data, type: "area" });
+      }
+
+      return series;
+    }
+
+    window.onload = function() {
+      var chart = new Victory(document.getElementById("root"), {
+        series: [{
+          type: "stack",
+          data: generateData()
+        }],
+        theme: "bright"
+      });
+
+      setInterval(function() {
+        chart.setOptions({
+          series: [{
+            type: "stack",
+            data: generateData()
+          }]
+        });
+      }, 5000);
+    }
+  </script>
+</body>
+</html>

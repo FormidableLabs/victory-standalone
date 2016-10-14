@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "defaults/configurations/walmart/es6-react",
-    ".eslintrc-base"
-  ],
-  "rules": {
-    "no-unused-vars": [0, {"varsIgnorePattern": "^h$"}]
-  }
-}

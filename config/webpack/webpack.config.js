@@ -10,16 +10,6 @@ var paths = {
   pkg: path.resolve('package.json')
 }
 
-var packageJson = require(paths.pkg);
-var libPath = (packageJson.name || "")
-var libName = libPath
-  .replace(/^\s+|\s+$/g, "")
-  .replace(/(^|[-_ ])+(.)/g, function (match, first, second) {
-    // Second match group is the character we want to change. Throw away first.
-    return second.toUpperCase();
-  });
-
-
 module.exports = {
   cache:    true,
   context: paths.source,
@@ -27,24 +17,38 @@ module.exports = {
 
   output: {
     path:     paths.output,
-    filename: libPath + ".min.js",
-    library:  libName,
+    filename: "victory-standalone.js",
+    library:  "Victory",
     libraryTarget: "umd"
   },
 
   resolve: {
     modulesDirectories: ['src', 'node_modules'],
-    extensions: ["", ".js", ".jsx"],
-    alias: {
-      'react':      'preact-compat',
-      'react-dom':  'preact-compat'
-    }
+    extensions: ["", ".js", ".jsx"]
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production'),
+      }
+    }),
+    new LodashModuleReplacementPlugin({
+      "currying":     true,
+      "flattening":   true,
+      "paths":        true,
+      "placeholders": true,
+      "shorthands":   true
+    }),
+    new webpack.SourceMapDevToolPlugin("[file].map"),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+  ],
 
   module: {
     loaders: [
       {
-        test:     /\.jsx?$/,
+        test:     /\.js?$/,
         exclude:  /node_modules/,
         loader:   'babel-loader'
       }
